@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-header></v-header>
-    <div class="tab">
+    <div class="tab border-1px">
 
       <div class="tab-item">
         <!--使用指令 router-link 组件来导航 -->
@@ -26,6 +26,18 @@
         <router-link to="/rest">休息视频</router-link>
       </div>
 
+      <!--<div class="tab-item">
+        APP
+      </div>
+
+      <div class="tab-item">
+        瞎推荐
+      </div>
+
+      <div class="tab-item">
+        拓展资源
+      </div>-->
+
     </div>
     <router-view></router-view>
   </div>
@@ -45,27 +57,26 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-#app
-  .header
-   background: red
-   line-height: 40px
-   color: #FFFFFF
+  @import "./common/css/mixin.styl"
 
 #app 
   .tab
     display: flex
     width: 100%
     height: 40px
-    border-bottom: 1px solid red
-    background: red
+    line-height: 40px
+    background: #d6204b
+    border-1px(#d6204b)
+    overflow: hidden
     .tab-item
       flex: 1
       text-align: center
       & > a
         display: block
         text-decoration: none;
-        font-size: 16px
-        color: #AAAAAA
+        font-size: 14px
+        color: #ec9cae
         &.active
           color: #FFFFFF
+          border-1px(#d6204b)
 </style>

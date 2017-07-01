@@ -5,10 +5,10 @@ import App from './App';
 import VueRouter from 'vue-router';
 // 第一步：从其他文件引入或者定义（路由）组件
 import welfare from './components/welfare/welfare.vue';
-import android from './components/android/android.vue';
-import ios from './components/ios/ios.vue';
-import web from './components/web/web.vue';
-import rest from './components/rest/rest.vue';
+import android from './components/lists/android.vue';
+import ios from './components/lists/ios.vue';
+import web from './components/lists/web.vue';
+import rest from './components/lists/rest.vue';
 
 Vue.config.debug = true;
 

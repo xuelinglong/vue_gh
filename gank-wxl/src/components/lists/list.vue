@@ -1,7 +1,4 @@
 <template>
-    <div class="android">
-        I am android!
-    </div>
 </template>
 
 <script type="text/ecmascript-6">
