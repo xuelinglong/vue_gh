@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import VueRouter from 'vue-router';
+import infiniteScroll from 'vue-infinite-scroll'; // 引入滑动模块
 // 第一步：从其他文件引入或者定义（路由）组件
 import welfare from './components/welfare/welfare.vue';
 import android from './components/lists/android.vue';
@@ -12,8 +13,9 @@ import rest from './components/lists/rest.vue';
 
 Vue.config.debug = true;
 
-Vue.use(VueRouter);
 // 安装这个插件
+Vue.use(VueRouter);
+Vue.use(infiniteScroll);
 
 // 定义路由
 const routes = [
@@ -26,7 +28,7 @@ const routes = [
 
 // 3. 创建 router 实例， 然后传 `routes`配置
 const router = new VueRouter({
-    linkActiveClass: 'active',
+    'linkActiveClass': 'active',
     routes
 });
 

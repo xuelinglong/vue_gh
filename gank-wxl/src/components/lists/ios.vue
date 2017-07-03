@@ -1,10 +1,14 @@
 <template>
-    <div class="ios">
-        I am ios!
-    </div>
+    <v-list class="ios"></v-list>
 </template>
 
 <script type="text/ecmascript-6">
+    import vList from './list.vue';
+    export default {
+        components: {
+            vList
+        }
+    };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
