@@ -1,10 +1,10 @@
 <template>
     <div class="list">
-        <div class="article-item">
+        <div class="article-item" v-for="result in results">
             <div class="title">
-                <a href="SexyJson\u8d85\u6027\u611fJson\u89e3\u6790\u5f00\u6e90\u5e93Swift\u7248" target="view_window">
-                    {{ article }}
-                    <p class="author">{{ author }}</p>
+                <a :href="result.url" target="view_window">
+                    {{ result.desc }}
+                    <p class="author">{{ result.who }}</p>
                 </a>
             </div>
         </div>
@@ -16,9 +16,12 @@
         name: 'v-list',
         data () {
             return {
-                article: 'I am ios!',
-                author: 'ceshi'
+                results: []
             };
+        },
+        mounted () {
+            this.$http.get(`http://gank.io/api/data/iOS/20/2`)
+            .then(response => { this.results = response.body.results; });
         }
     };
 </script>
