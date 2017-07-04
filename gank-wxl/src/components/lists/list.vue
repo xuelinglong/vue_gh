@@ -16,11 +16,20 @@
         name: 'v-list',
         data () {
             return {
-                results: []
+                results: [],
+                page: 1,
+                types: [
+                    { view: 'welfare', data: '福利' },
+                    { view: '安卓', data: 'Android' },
+                    { view: 'ios', data: 'iOS' },
+                    { view: 'web', data: '前端' },
+                    { view: 'rest', data: '休息视频' }
+                ]
             };
         },
+        props: ['type'],
         mounted () {
-            this.$http.get(`http://gank.io/api/data/iOS/20/2`)
+            this.$http.get(`http://gank.io/api/data/${this.type}/10/${this.page}`)
             .then(response => { this.results = response.body.results; });
         }
     };

@@ -41,6 +41,7 @@
             & > a
                 display: block
                 font-size: 14px
+                color: #ec9cae
                 &.active
                     color: #FFFFFF
 </style>
