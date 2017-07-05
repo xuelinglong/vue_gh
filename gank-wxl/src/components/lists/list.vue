@@ -1,5 +1,5 @@
 <template>
-    <div class="list">
+    <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
         <div class="article-item" v-for="result in results">
             <div class="title">
                 <a :href="result.url" target="view_window">
@@ -18,19 +18,23 @@
             return {
                 results: [],
                 page: 1,
-                types: [
-                    { view: 'welfare', data: '福利' },
-                    { view: '安卓', data: 'Android' },
-                    { view: 'ios', data: 'iOS' },
-                    { view: 'web', data: '前端' },
-                    { view: 'rest', data: '休息视频' }
-                ]
+                busy: false
             };
         },
         props: ['type'],
-        mounted () {
-            this.$http.get(`http://gank.io/api/data/${this.type}/10/${this.page}`)
-            .then(response => { this.results = response.body.results; });
+        methods: {
+            mounted () {
+                this.$http.get(`http://gank.io/api/data/${this.type}/10/${this.page}`)
+                .then(response => {
+                    this.results = response.body.results;
+                    this.busy = false;
+                });
+            },
+            loadMore () {
+                this.busy = true;
+                this.mounted();
+                this.page++;
+            }
         }
     };
 </script>
