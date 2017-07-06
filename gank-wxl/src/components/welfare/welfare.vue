@@ -1,5 +1,5 @@
 <template>
-    <div class="welfare">
+    <div class="welfare" >
         <div class="welfare-center">
             left
         </div>

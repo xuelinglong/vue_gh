@@ -1,10 +1,10 @@
 <template>
     <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-        <div class="article-item" v-for="result in results">
+        <div class="article-item" v-for="data in datas">
             <div class="title">
-                <a :href="result.url" target="view_window">
-                    {{ result.desc }}
-                    <p class="author">{{ result.who }}</p>
+                <a :href="data.url" target="view_window">
+                    {{ data.desc }}
+                    <p class="author">{{ data.who }}</p>
                 </a>
             </div>
         </div>
@@ -16,6 +16,7 @@
         name: 'v-list',
         data () {
             return {
+                datas: [],
                 results: [],
                 page: 1,
                 busy: false
@@ -27,6 +28,7 @@
                 this.$http.get(`http://gank.io/api/data/${this.type}/10/${this.page}`)
                 .then(response => {
                     this.results = response.body.results;
+                    this.datas = this.datas.concat(this.results);
                     this.busy = false;
                 });
             },
