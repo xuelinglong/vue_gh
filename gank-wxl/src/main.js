@@ -5,6 +5,8 @@ import App from './App';
 import VueRouter from 'vue-router';
 import infiniteScroll from 'vue-infinite-scroll'; // 引入滑动模块
 import vueResource from 'vue-resource';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueLazyload from 'vue-lazyload';
 // 第一步：从其他文件引入或者定义（路由）组件
 import welfare from './components/welfare/welfare.vue';
 import android from './components/lists/android.vue';
@@ -18,6 +20,14 @@ Vue.config.debug = true;
 Vue.use(VueRouter);
 Vue.use(infiniteScroll);
 Vue.use(vueResource);
+Vue.use(VueAwesomeSwiper);
+
+// or with options
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: require('./assets/404.png'),
+    attempt: 1
+});
 
 // 定义路由
 const routes = [
