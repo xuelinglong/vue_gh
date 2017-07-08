@@ -55,6 +55,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
 .welfare
     display: flex
+    background: #f0f0f0
     .welfare-center
         flex: 1
         text-align: center
@@ -62,8 +63,12 @@
         .box-img
             width: 95%
             border: 3px solid #fcfcfc
-            margin: 8px 2px 15px 5px;
+            margin: 8px 5px 15px 2px;
+            border-radius: 6px
+            border: 2px solid #d9d9d9
             img
                 width: 100%
                 height: auto
+                border-radius: 6px
+                border: 1px solid #FFFFFF
 </style>

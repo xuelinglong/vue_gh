@@ -47,8 +47,10 @@
     flex-direction: column
     width: 100%
     height: 100%
+    background: #f0f0f0
     .article-item
         flex: 1
+        width: 100%
         line-height: 60px
         taxt-align: left           
         border-bottom: 1px solid #AAAAAA
@@ -58,8 +60,11 @@
             color: #d94064
             & > a
                 display: block
-                text-decoration: none;
+                text-decoration: none
                 color: #d94064
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
                 .author
                     line-height: 20px
                     font-size: 8px

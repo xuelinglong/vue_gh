@@ -2,10 +2,18 @@
     <div class="header">
         <img class="img" src="../../assets/gank-header.png" />
         <div class="name">干货集中营</div>
+        <v-model></v-model>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import vModal from '../modal/modal.vue';
+    export default {
+        name: 'header',
+        components: {
+            'v-modal': vModal
+        }
+    };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

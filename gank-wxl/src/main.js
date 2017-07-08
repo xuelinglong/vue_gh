@@ -7,6 +7,7 @@ import infiniteScroll from 'vue-infinite-scroll'; // 引入滑动模块
 import vueResource from 'vue-resource';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import VueLazyload from 'vue-lazyload';
+import VueModal from 'vue-modal';
 // 第一步：从其他文件引入或者定义（路由）组件
 import welfare from './components/welfare/welfare.vue';
 import android from './components/lists/android.vue';
@@ -21,6 +22,7 @@ Vue.use(VueRouter);
 Vue.use(infiniteScroll);
 Vue.use(vueResource);
 Vue.use(VueAwesomeSwiper);
+Vue.use(VueModal);
 
 // or with options
 Vue.use(VueLazyload, {
