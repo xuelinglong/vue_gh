@@ -1,22 +1,23 @@
 <template>
     <div class="menu">
-         <div class="menu-list">
-            <div v-for="menu in menus" class="menu-item">
-                    <router-link :to="menu.view">
-                        {{ menu.data }}
-                    </router-link>
-            </div>
-         </div>
+         <swiper class="menu-list" :options="swiperOption">
+            <swiper-slide v-for="menu in menus" class="menu-item">
+                <v-jump :menu="menu"></v-jump>
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
+         </swiper>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
+    import vJump from '../menu-jump/menu-jump.vue';
     export default {
         name: 'v-menu',
         components: {
             swiper,
-            swiperSlide
+            swiperSlide,
+            'v-jump': vJump
         },
         data () {
             return {
@@ -26,7 +27,11 @@
                      { view: 'ios', data: 'IOS' },
                      { view: 'web', data: '前端' },
                      { view: 'rest', data: '休息视频' }
-                ]
+                ],
+                swiperOption: {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true
+                }
             };
         },
         mounted () {
@@ -46,10 +51,10 @@
         .menu-item    
             flex: 1
             text-align: center
-            & > a
-                display: block
-                font-size: 14px
-                color: #ec9cae
-                &.active
-                    color: #FFFFFF
+        .swiper-pagination
+            top: 0
+            height: 40px
+            display: flex
+            justify-content: space-around
+            width: 100%
 </style>
