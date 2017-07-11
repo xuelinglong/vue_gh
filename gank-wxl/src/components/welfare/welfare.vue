@@ -2,19 +2,19 @@
     <div class="welfare" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
         <div class="welfare-center">
             <div v-for="img in leftImg" class="box-img">
-                <v-img :imgUrl="img.url"></v-img>
+                <v-card :img="img"></v-card>
             </div>
         </div>
         <div class="welfare-center">
             <div v-for="img in rightImg" class="box-img">
-                <v-img :imgUrl="img.url"></v-img>
+                <v-card :img="img"></v-card>
             </div>
         </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import vImg from '../lazyloadimg/lazyimg.vue';
+    import vCard from '../card/card.vue';
     export default {
         data () {
             return {
@@ -26,7 +26,7 @@
             };
         },
         components: {
-            'v-img': vImg
+            'v-card': vCard
         },
         methods: {
             mounted () {
@@ -66,9 +66,37 @@
             margin: 8px 5px 15px 2px;
             border-radius: 6px
             border: 2px solid #d9d9d9
-            img
+            .card
                 width: 100%
-                height: auto
+                overflow: hidden
+                position: relative
                 border-radius: 6px
-                border: 1px solid #FFFFFF
+                img
+                    width: 100%
+                    height: auto
+                    border-radius: 6px
+                    border: 1px solid #FFFFFF
+                .card-bottom
+                    width: 100%
+                    height: auto
+                    display: flex
+                    flex-direction: column
+                    position: absolute
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    background-color rgba(0,0,0,0.2)
+                    color: #FFFFFF
+                .time
+                    flex: 1
+                    text-align: left
+                    line-height: 25px
+                    margin-left: 5px
+                    font-size: 16px
+                .author
+                    flex: 1
+                    text-align: right
+                    line-height: 25px
+                    margin-right: 5px
+                    font-size: 8px
 </style>
