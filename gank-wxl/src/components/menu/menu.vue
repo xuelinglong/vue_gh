@@ -2,9 +2,9 @@
     <div class="menu">
          <div class="menu-list">
             <div v-for="menu in menus" class="menu-item">
-                <router-link :to="menu.view">
-                    {{ menu.data }}
-                </router-link>
+                    <router-link :to="menu.view">
+                        {{ menu.data }}
+                    </router-link>
             </div>
          </div>
     </div>
