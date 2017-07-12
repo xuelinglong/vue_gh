@@ -5,7 +5,7 @@ import App from './App';
 import VueRouter from 'vue-router';
 import infiniteScroll from 'vue-infinite-scroll'; // 引入滑动模块
 import vueResource from 'vue-resource';
-import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueConciseSlider from 'vue-concise-slider';
 import VueLazyload from 'vue-lazyload';
 import VueModal from 'vue-modal';
 // 第一步：从其他文件引入或者定义（路由）组件
@@ -14,6 +14,8 @@ import android from './components/lists/android.vue';
 import ios from './components/lists/ios.vue';
 import web from './components/lists/web.vue';
 import rest from './components/lists/rest.vue';
+import recommend from './components/lists/recommend.vue';
+import resources from './components/lists/resources.vue';
 
 Vue.config.debug = true;
 
@@ -21,7 +23,7 @@ Vue.config.debug = true;
 Vue.use(VueRouter);
 Vue.use(infiniteScroll);
 Vue.use(vueResource);
-Vue.use(VueAwesomeSwiper);
+Vue.use(VueConciseSlider);
 Vue.use(VueModal);
 
 // or with options
@@ -37,7 +39,9 @@ const routes = [
     { path: '/android', component: android },
     { path: '/ios', component: ios },
     { path: '/web', component: web },
-    { path: '/rest', component: rest }
+    { path: '/rest', component: rest },
+    { path: '/recommend', component: recommend },
+    { path: '/resources', component: resources }
 ];
 
 // 3. 创建 router 实例， 然后传 `routes`配置

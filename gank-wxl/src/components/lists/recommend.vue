@@ -1,7 +1,7 @@
 <template>
-    <div class="web">
-        <v-list :type="'前端'"></v-list>
-    </div>
+    <div class="recommend">
+        <v-list :type="'瞎推荐'"></v-list>
+    </div>  
 </template>
 
 <script type="text/ecmascript-6">

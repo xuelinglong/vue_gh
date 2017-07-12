@@ -1,7 +1,7 @@
 <template>
-    <div class="web">
-        <v-list :type="'前端'"></v-list>
-    </div>
+    <div class="resources">
+        <v-list :type="'拓展资源'"></v-list>
+    </div>  
 </template>
 
 <script type="text/ecmascript-6">

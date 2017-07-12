@@ -14,4 +14,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+    @import './comm.styl'
 </style>
