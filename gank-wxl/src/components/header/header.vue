@@ -20,7 +20,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import vModal from '../modal/modal.vue';
     export default {
         name: 'header',
         data () {
@@ -38,12 +37,9 @@
                 ]
             };
         },
-        components: {
-            'v-modal': vModal
-        },
         methods: {
             showModal () {
-                this.modalShow = true;
+                this.$store.commit('UPDATE_MODALSHOW');
             },
             falseModal () {
                 this.modalShow = false;

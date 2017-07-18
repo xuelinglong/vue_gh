@@ -2,12 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
+import store from './vuex/store';
 import VueRouter from 'vue-router';
 import infiniteScroll from 'vue-infinite-scroll'; // 引入滑动模块
 import vueResource from 'vue-resource';
-import VueConciseSlider from 'vue-concise-slider';
 import VueLazyload from 'vue-lazyload';
-import VueModal from 'vue-modal';
 // 第一步：从其他文件引入或者定义（路由）组件
 import welfare from './components/welfare/welfare.vue';
 import android from './components/lists/android.vue';
@@ -23,8 +22,6 @@ Vue.config.debug = true;
 Vue.use(VueRouter);
 Vue.use(infiniteScroll);
 Vue.use(vueResource);
-Vue.use(VueConciseSlider);
-Vue.use(VueModal);
 
 // or with options
 Vue.use(VueLazyload, {
@@ -58,5 +55,6 @@ new Vue({
     el: '#app',
     template: '<App/>',
     components: { App },
+    store,
     router
 });

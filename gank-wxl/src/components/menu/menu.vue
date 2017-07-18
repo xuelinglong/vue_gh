@@ -1,8 +1,8 @@
 <template>
          <div class="menu-list">
-            <slider v-for="menu in menus" class="menu-item" :pages="pages" :sliderinit="sliderinit">
+            <div v-for="menu in menus" class="menu-item">
                 <v-jump :menu="menu"></v-jump>
-            </slider>
+            </div>
          </div>
 </template>
 
@@ -24,59 +24,7 @@
                      { view: 'web', data: '前端' },
                      { view: 'rest', data: '休息视频' },
                      { view: 'recommend', data: '瞎推荐' }
-                ],
-                pages: [
-                    {
-                        title: '1',
-                        style: {
-                            height: '40px',
-                            background: '#d6204b'
-                        }
-                    },
-                    {
-                        title: '2',
-                        style: {
-                            height: '40px',
-                            background: '#d6204b'
-                        }
-                    },
-                    {
-                        title: '3',
-                        style: {
-                            height: '40px',
-                            background: '#d6204b'
-                        }
-                    },
-                    {
-                        title: '4',
-                        style: {
-                            height: '40px',
-                            background: '#d6204b'
-                        }
-                    },
-                    {
-                        title: '5',
-                        style: {
-                            height: '40px',
-                            background: '#d6204b'
-                        }
-                    },
-                    {
-                        title: '6',
-                        style: {
-                            height: '40px',
-                            background: '#d6204b',
-                            fontsize: '8px'
-                        }
-                    }
-                ],
-                sliderinit: {
-                    currentPage: 0,
-                    thresholdDistance: 30,
-                    thresholdTime: 100,
-                    loop: true,
-                    slidesToScroll: 1
-                }
+                ]
             };
         },
         mounted () {
