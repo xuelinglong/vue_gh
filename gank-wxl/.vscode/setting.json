@@ -1,0 +1,6 @@
+// vscode的用户配置分3个级别，分别是默认配置、全局配置和工作区配置，优先级也依次递增
+
+{
+    // 启用后，将在保存文件时剪裁尾随空格。
+    "files.trimTrailingWhitespace": false
+}

@@ -16,7 +16,7 @@
 <script type="text/ecmascript-6">
     import vCard from '../card/card.vue';
     export default {
-        data () {
+        data() {
             return {
                 leftImg: [],
                 rightImg: [],
@@ -29,7 +29,7 @@
             'v-card': vCard
         },
         methods: {
-            mounted () {
+            mounted() {
                 this.$http.get(`https://gank.io/api/data/福利/10/${this.page}`)
                 .then(response => {
                     this.LEFT = response.body.results.filter((data, i) => {
@@ -43,7 +43,7 @@
                     this.busy = false;
                 });
             },
-            loadMore () {
+            loadMore() {
                 this.busy = true;
                 this.mounted();
                 this.page++;

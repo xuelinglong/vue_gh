@@ -15,7 +15,7 @@
             slider,
             'v-jump': vJump
         },
-        data () {
+        data() {
             return {
                 menus: [
                      { view: 'welfare', data: '福利' },
@@ -27,7 +27,7 @@
                 ]
             };
         },
-        mounted () {
+        mounted() {
         }
     };
 </script>

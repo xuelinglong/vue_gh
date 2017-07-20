@@ -7,7 +7,7 @@
         name: 'v-img',
         props: ['imgUrl'],
         computed: {
-            imgObj () {
+            imgObj() {
                 return `${this.imgUrl}`;
             }
         }

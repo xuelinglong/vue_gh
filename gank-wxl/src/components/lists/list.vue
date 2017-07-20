@@ -14,7 +14,7 @@
 <script type="text/ecmascript-6">
     export default {
         name: 'v-list',
-        data () {
+        data() {
             return {
                 datas: [],
                 results: [],
@@ -24,7 +24,7 @@
         },
         props: ['type'],
         methods: {
-            mounted () {
+            mounted() {
                 this.$http.get(`http://gank.io/api/data/${this.type}/10/${this.page}`)
                 .then(response => {
                     this.results = response.body.results;
@@ -32,7 +32,7 @@
                     this.busy = false;
                 });
             },
-            loadMore () {
+            loadMore() {
                 this.busy = true;
                 this.mounted();
                 this.page++;
