@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <v-img :imgUrl="img.url"></v-img>
+        <v-img :imgUrl="img.url" :imgDesc="img.desc"></v-img>
         <div class="card-bottom">
             <div class="time">{{ img.desc }}</div>
             <div class="author">via.{{ img.who }}</div>

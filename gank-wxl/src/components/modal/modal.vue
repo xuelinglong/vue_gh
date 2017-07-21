@@ -1,5 +1,6 @@
 <template>
     <div class="modal">
+        <div class="clickArea-top" @click="falseModal"></div>
         <div class="modal-list" :class="{'show': show}">
             <div class="banner">选择主题</div>
             <div class="color-box">
@@ -12,6 +13,7 @@
                 <div class="ensure">确定</div>
             </div>
         </div>
+        <div class="clickArea-bottom" @click="falseModal"></div>
     </div>
 </template>
 
@@ -50,13 +52,16 @@
         width: 100%
         height: 100%
         overflow: scroll
-        background: rgba(7,17,27,0.8)
+        background: rgba(7,17,27,0.6)
+        .clickArea-top
+            width: 100%
+            height: 30%
         .modal-list
             position: fixed
             width: 90%
             height: 40%
             left: 5%
-            top: 20%
+            top: 30%
             background: #FFFFFF
             border-radius: 4px
             .banner
@@ -93,4 +98,10 @@
                     text-align: center
                     display: block
                     color: #d93159
+        .clickArea-bottom
+            position: fixed
+            width: 100%
+            height: 30%
+            top: 70%
+            left: 0
 </style>
