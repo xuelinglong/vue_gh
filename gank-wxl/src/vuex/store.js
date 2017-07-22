@@ -6,7 +6,9 @@ Vue.use(Vuex);
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
     'modalShow': false,
-    'magnifyShow': false
+    'magnifyShow': false,
+    'articleShow': false,
+    'loadingShow': false
 };
 
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
@@ -19,6 +21,14 @@ const mutations = {
     UPDATE_MAGNIFYSHOW(state) {
         // 变更状态
         state.magnifyShow = !state.magnifyShow;
+    },
+    UPDATE_ARTICLESHOW(state) {
+        // 变更状态
+        state.articleShow = !state.articleShow;
+    },
+    UPDATE_LOADINGSHOW(state) {
+        // 变更状态
+        state.loadingShow = !state.loadingShow;
     }
 };
 

@@ -27,6 +27,7 @@ Vue.use(vueResource);
 Vue.use(VueLazyload, {
     preLoad: 1.3,
     error: require('./assets/404.png'),
+    loading: require('./assets/loading.gif'),
     attempt: 1
 });
 
