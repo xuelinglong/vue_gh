@@ -8,7 +8,8 @@ const state = {
     'modalShow': false,
     'magnifyShow': false,
     'articleShow': false,
-    'loadingShow': false
+    'loadingShow': false,
+    'welfareShow': true
 };
 
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
@@ -29,6 +30,10 @@ const mutations = {
     UPDATE_LOADINGSHOW(state) {
         // 变更状态
         state.loadingShow = !state.loadingShow;
+    },
+    UPDATE_WELFARESHOW(state) {
+        // 变更状态
+        state.welfareShow = !state.welfareShow;
     }
 };
 
