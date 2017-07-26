@@ -1,9 +1,10 @@
 <template>
     <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+        <!-- infinite-scroll-disabled 即 busy 这个属性值为真时无限滚动将会被禁止。 -->
         <scroller style="margin-top: 100px;"
               :on-refresh="refresh"
               :on-infinite="infinite"
-              class="scroller"
+              class="scroller-list"
               ref="my_scroller">
         <div class="article-item" v-for="data in datas">
             <div class="title" :articelUrl="data.url">
@@ -60,14 +61,16 @@
             },
             refresh(done) {
                 setTimeout(() => {
-                this.mounted();
-                done();
+                    this.busy = false;
+                    this.mounted();
+                    done();
                 }, 1500);
             },
             infinite(done) {
                 setTimeout(() => {
-                this.mounted();
-                done();
+                    this.busy = false;
+                    this.mounted();
+                    done();
                 }, 1500);
             },
             showArticle() {

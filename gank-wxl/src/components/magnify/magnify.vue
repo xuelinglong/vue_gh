@@ -2,10 +2,14 @@
     <div class="magnify" :class="{'show': show}">
         <div class="clickArea-top"></div>
         <div class="center" @click="falseMagnify">
-            <img :src="imgUrl" class="img-big"></img>
+            <!-- <img src="../../assets/404.png" class="img-big"></img> -->
+<!-- 从history/content/day/xx/xx/xx 获取到的src格式为\"http://ww1.sinaimg.cn/large/610dc034ly1fhxe0hfzr0j20u011in1q.jpg\" ，需要使用正则表达式解析 -->
+            <img src="http://ww1.sinaimg.cn/large/610dc034ly1fhxe0hfzr0j20u011in1q.jpg" class="img-big"></img>
+            <!-- 测试magnifyData <div v-html="magnifyData.content" class="img-big"></div> -->
         </div>
+        <!-- 仅需要图片的 url 和 desc -->
         <div class="foot">
-            <div class="desc">{{ imgDesc }}</div>
+            <div class="desc">07-26</div>
             <div class="download">
                 <img src="../../assets/download.png" class="button">
             </div>
@@ -16,7 +20,7 @@
 <script>
     export default {
         name: 'v-magnify',
-        props: ['imgDesc', 'imgUrl', 'show'],
+        props: ['show', 'data'],
         methods: {
             falseMagnify() {
                 this.$store.commit('UPDATE_MAGNIFYSHOW');
@@ -45,7 +49,9 @@
             left: 0
             .img-big
                 max-width: 100%
+                min-width: 100%
                 max-height: 100%
+                min-height: 100%
                 vertical-align: middle
                 border-radius: 6px
                 border: 1px sloid #AAAAAA

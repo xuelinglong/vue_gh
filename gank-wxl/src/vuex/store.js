@@ -30,11 +30,11 @@ const mutations = {
     UPDATE_LOADINGSHOW(state) {
         // 变更状态
         state.loadingShow = !state.loadingShow;
-    },
-    UPDATE_WELFARESHOW(state) {
-        // 变更状态
-        state.welfareShow = !state.welfareShow;
     }
+    // UPDATE_WELFARESHOW(state) {
+    //     // 变更状态
+    //     state.welfareShow = !state.welfareShow;
+    // }
 };
 
 export default new Vuex.Store({
