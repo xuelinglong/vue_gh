@@ -15,7 +15,7 @@
                 <v-card :img="img"></v-card>
             </div>
         </div>
-        <v-magnify v-show="magnifyShow" :show="magnifyShow" :data="magnifyData"></v-magnify>
+        <v-magnify v-show="magnifyShow" :show="magnifyShow" :data="magnifyData[0]"></v-magnify>
     </div>
 <!-- </scroller> -->
 </template>
@@ -24,6 +24,7 @@
     import vCard from '../card/card.vue';
     import vMagnify from '../magnify/magnify.vue';
     import { mapState } from 'vuex';
+    import { objectDate } from '../../common/js/date';
     export default {
         data() {
             return {
@@ -80,8 +81,10 @@
             },
             selectedImg(time) {
                 this.time = time;
+                this.$store.commit('UPDATE_LOADING', true);
+                let object = objectDate(this.time);
                 // 以 2017/07/26 的 img 测试代码逻辑是否正确
-                this.$http.get(`http://gank.io/api/history/content/day/2017/07/26`)
+                this.$http.get(`http://gank.io/api/history/content/day/${object.Y}/${object.M}/${object.D}`)
                 .then((response) => {
                     this.magnifyData = response.body.results;
                 });
