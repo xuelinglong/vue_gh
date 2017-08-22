@@ -1,16 +1,26 @@
 <template>
-  <div class="nav">
-    <mu-appbar title="郑州">
-      <mu-text-field icon="search" class="appbar-search-field"  slot="right" hintText="请输入搜索内容"/>
+  <div class="tab">
+    <mu-appbar title="">
+        <mu-flat-button label="郑州" slot="left"/>
+        <mu-icon-menu icon="expand_more" :maxHeight="200" slot="left">
+            <mu-menu-item v-for="city in cities" :title="city"/>
+        </mu-icon-menu>
+        <mu-icon-button icon="search" slot="right"/>
+        <input type="text" name="search" value="" style="background: #f5f5f5">
     </mu-appbar>
-    <mu-tabs :value="activeTab" @change="handleTabChange" class="tab">
+    <mu-tabs :value="activeTab" @change="handleTabChange">
       <mu-tab value="tab1" title="正在热映"/>
       <mu-tab value="tab2" title="即将上映"/>
     </mu-tabs>
+    <v-listview :tabvalue="tabvalue"></v-listview>
+
+ <!--   <div>正在热映</div>
+    <div>即将上映</div>
+
     <mobile-tear-sheet>
       <mu-list>
         <mu-list-item title="电影名称">
-          <mu-avatar icon="android" slot="leftAvatar"/>
+          <mu-avatar icon="../assets/logo.png" slot="leftAvatar"/>
           <span slot="describe">
             <span style="color: rgba(0, 0, 0, .87)">评分</span> <br/>
             <span style="color: rgba(0, 0, 0, .87)">导演</span> <br/>
@@ -59,42 +69,38 @@
         </mu-list-item>
         <mu-divider inset/>
       </mu-list>
-    </mobile-tear-sheet>
+    </mobile-tear-sheet>  -->
   </div>
 </template>
 
 <script>
+  import Vlistview from './listview/listview.vue';
 export default {
   data () {
     return {
+      cities: ['北京', '上海', '广州', '杭州', '深圳', '香港', '澳门'],
+      tabvalue: 'tab1',
+      open: false,
       activeTab: 'tab1'
     };
+  },
+  components: {
+    'v-listview': Vlistview
   },
   methods: {
     handleTabChange (val) {
       this.activeTab = val;
+      this.tabvalue = val;
     }
   }
 };</script>
 
 <style lang="less">
-.nav{
+.tab{
   margin: -60px 0;
-  .appbar-search-field{
-  color: #FFF;
-  margin-bottom: 0;
-  &.focus-state {
-    color: #FFF;
-  }
-  .mu-text-field-hint {
-    color: fade(#FFF, 54%);
-  }
-  .mu-text-field-input {
-    color: #FFF;
-  }
-  .mu-text-field-focus-line {
-    background-color: #FFF;
-  }
 }
-}
+  input{
+    height: 40px;
+    border-radius: 9px;
+  }
 </style>
