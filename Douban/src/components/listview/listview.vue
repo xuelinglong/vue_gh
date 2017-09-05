@@ -1,5 +1,5 @@
 <template>
-    <div class="list-1" v-if="tabvalue === `tab1`">   <!-- 正在热映listview : tab1 -->
+    <div class="list-1" v-if="tabName === `in_theaters`" :type="`in_theaters`">   <!-- 正在热映listview : tab1 -->
         <!-- <mu-list>
             <mu-list-item title="电影名称">
             <mu-avatar icon="android" slot="leftAvatar"/>
@@ -13,7 +13,12 @@
         </mu-list> -->
         <mu-list>
             <mu-list-item title="">
-                <mu-avatar slot="leftAvatar"><img src="../../assets/person.jpg"></mu-avatar>
+                <!-- <mu-avatar slot="leftAvatar"><img src="../../assets/person.jpg"></mu-avatar> -->
+                <mu-paper slot="left">
+                    <div class='paper-img'>
+                        <img src="../../assets/person.jpg">
+                    </div>
+                </mu-paper>
                 <mu-list style="margin: -20px 0 -15px 0">
                     <span>电影名称</span> <br/>
                     <span>评分</span> <br/>
@@ -21,57 +26,83 @@
                     <span>主演</span> <br/>
                     <span>统计人数</span>
                 </mu-list>
-                <mu-icon value="share" slot="right"/>
+                <mu-badge content="想看" color="#e8ce9b" style="margin-top: 40px" slot="right"/>
             </mu-list-item>
             <mu-divider inset/>
         </mu-list>
     </div>
 
-
-    <div class="list-2" v-else-if="tabvalue === `tab2`">   <!-- 即将上映listview : tab2 -->
+    <div class="list-2" v-else-if="tabName === `coming_soon`" :type="`coming_soon`">   <!-- 即将上映listview : tab2 -->
         <mu-tabs :value="Tab" @change="tabChange" style="background: #babfb8">
-            <mu-tab value="tab1" title="全部"/>
-            <mu-tab value="tab2" title="8月"/>
-            <mu-tab value="tab3" title="9月"/>
-            <mu-tab value="tab4" title="10月"/>
-            <mu-tab value="tab5" title="时间"/>
-            <mu-tab value="tab6" title="热度"/>
+            <mu-tab value="全部" title="全部"/>
+            <mu-tab value="8月" title="8月"/>
+            <mu-tab value="9月" title="9月"/>
+            <mu-tab value="10月" title="10月"/>
+            <mu-tab value="时间" title="时间"/>
+            <mu-tab value="热度" title="热度"/>
         </mu-tabs>
         <div>     <!-- 下方listview -->
-            <span>当前子菜单：{{ month }}</span>
+            <span :month="Tab">当前子菜单：{{ month }}</span>
             <div class="date">8月25日，星期五</div>
             <mu-list>
                 <mu-list-item title="">
-                    <mu-avatar slot="leftAvatar"><img src="../../assets/person.jpg"></mu-avatar>
+                    <mu-paper slot="left">
+                        <div class='paper-img'>
+                            <img src="../../assets/person.jpg">
+                        </div>
+                    </mu-paper>
                     <mu-list style="margin: -20px 0 -15px 0">
                         <span>电影名称</span> <br/>
                         <span>导演</span> <br/>
                         <span>主演</span> <br/>
-                        <span>统计人数</span>
+                        <span>统计人数</span> <br/>
+                        <span>&nbsp</span>
                     </mu-list>
-                    <mu-icon value="share" slot="right"/>
+                    <mu-badge content="想看" style="margin-top: 40px" color="#e8ce9b" slot="right"/>
                 </mu-list-item>
                 <mu-divider inset/>
+                <div style="background: yellow" class="ceshi">
+                    <div class="title" v-for="data in datas">{{ data.title }}</div>
+                </div>
             </mu-list>
         </div>
     </div>
 </template>
 
 <script>
+    // import { mapState } from 'vuex';
+    // import axios from 'axios';
     export default {
         name: 'listview',
         data () {
             return {
-                Tab: 'tab1',
-                month: 'tab1'
+                Tab: '全部',
+                month: '',
+                datas: []
             };
         },
-        props: ['tabvalue'],
+        props: ['tabName'],
         methods: {
             tabChange (val) {
                 this.Tab = val;
                 this.month = val;
             }
+            // mounted () {
+            //     axios.get(`/movie/in_theaters?city=郑州`)
+            //         .then((response) => {
+            //             this.datas = response.data.subjects;
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            //     axios({
+            //         method: 'get',
+            //         url: '/movie/in_theaters?city=郑州',
+            //         data: {
+            //             subjects
+            //         }
+            //     });
+            // }
         }
     };</script>
 
@@ -81,5 +112,14 @@
         height: 40px;
         background: #f7f7f7;
         padding: 10px 220px 0 0;
+    }
+    .paper-img{
+        width: 80px;
+    }
+    img{
+        width: 80px;
+        height: 100px;
+        margin-top: 55px;
+        overflow: hidden;
     }
 </style>
