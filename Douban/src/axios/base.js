@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// http://api.douban.com/v2/
 const HOST = '/api/';
 
 export default function(url, params = {}) {

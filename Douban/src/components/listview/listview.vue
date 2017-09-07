@@ -51,8 +51,8 @@
                             <img src="../../assets/person.jpg">
                         </div>
                     </mu-paper>
-                    <mu-list style="margin: -20px 0 -15px 0">
-                        <span>电影名称</span> <br/>
+                    <mu-list style="margin: -20px 0 -15px 0" v-for="subject in subjects">
+                        <span>{{ subject.title }}</span> <br/>
                         <span>导演</span> <br/>
                         <span>主演</span> <br/>
                         <span>统计人数</span> <br/>
@@ -61,17 +61,16 @@
                     <mu-badge content="想看" style="margin-top: 40px" color="#e8ce9b" slot="right"/>
                 </mu-list-item>
                 <mu-divider inset/>
-                <div style="background: yellow" class="ceshi">
-                    <div class="title" v-for="data in datas">{{ data.title }}</div>
-                </div>
             </mu-list>
         </div>
     </div>
 </template>
 
 <script>
-    // import { mapState } from 'vuex';
+    import { mapState } from 'vuex';
     // import axios from 'axios';
+    import * as type from './../../axios/movies/type';
+
     export default {
         name: 'listview',
         data () {
@@ -82,11 +81,16 @@
             };
         },
         props: ['tabName'],
+        computed: mapState({
+            subjects (state) {
+                return state.movie.movies[this.tabName].subjects;
+            }
+        }),
         methods: {
             tabChange (val) {
                 this.Tab = val;
                 this.month = val;
-            }
+            },
             // mounted () {
             //     axios.get(`/movie/in_theaters?city=郑州`)
             //         .then((response) => {
@@ -102,7 +106,19 @@
             //             subjects
             //         }
             //     });
-            // }
+            // },
+            mounted () {
+                this.fetchData();
+            },
+            fetchData () {
+                // doing
+                if (
+                    !(this.$store.state.movie.movies[this.tabName].subjects &&
+                        this.$store.state.movie.movies[this.tabName].subjects.length > 0)
+                    ) {
+                    this.$store.dispatch(type.FETCH_MOVIES, { type: this.tabName });
+                }
+            }
         }
     };</script>
 
