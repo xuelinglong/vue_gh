@@ -1,5 +1,5 @@
 <template>
-    <div class="list-1" v-if="tabName === `in_theaters`" :type="`in_theaters`">   <!-- 正在热映listview : tab1 -->
+    <div class="list-1" v-if="tabName === `in_theaters`">   <!-- 正在热映listview : tab1 -->
         <!-- <mu-list>
             <mu-list-item title="电影名称">
             <mu-avatar icon="android" slot="leftAvatar"/>
@@ -32,7 +32,7 @@
         </mu-list>
     </div>
 
-    <div class="list-2" v-else-if="tabName === `coming_soon`" :type="`coming_soon`">   <!-- 即将上映listview : tab2 -->
+    <div class="list-2" v-else-if="tabName === `coming_soon`">   <!-- 即将上映listview : tab2 -->
         <mu-tabs :value="Tab" @change="tabChange" style="background: #babfb8">
             <mu-tab value="全部" title="全部"/>
             <mu-tab value="8月" title="8月"/>
@@ -51,8 +51,8 @@
                             <img src="../../assets/person.jpg">
                         </div>
                     </mu-paper>
-                    <mu-list style="margin: -20px 0 -15px 0" v-for="subject in subjects">
-                        <span>{{ subject.title }}</span> <br/>
+                    <mu-list style="margin: -20px 0 -15px 0">
+                        <span>0</span> <br/>
                         <span>导演</span> <br/>
                         <span>主演</span> <br/>
                         <span>统计人数</span> <br/>
@@ -73,7 +73,7 @@
 
     export default {
         name: 'listview',
-        data () {
+        data() {
             return {
                 Tab: '全部',
                 month: '',
@@ -82,16 +82,16 @@
         },
         props: ['tabName'],
         computed: mapState({
-            subjects (state) {
+            subjects(state) {
                 return state.movie.movies[this.tabName].subjects;
             }
         }),
         methods: {
-            tabChange (val) {
+            tabChange(val) {
                 this.Tab = val;
                 this.month = val;
             },
-            // mounted () {
+            // mounted() {
             //     axios.get(`/movie/in_theaters?city=郑州`)
             //         .then((response) => {
             //             this.datas = response.data.subjects;
@@ -107,10 +107,11 @@
             //         }
             //     });
             // },
-            mounted () {
+            mounted() {
+                console.log(`tabName: ${this.activeTab}`);
                 this.fetchData();
             },
-            fetchData () {
+            fetchData() {
                 // doing
                 if (
                     !(this.$store.state.movie.movies[this.tabName].subjects &&

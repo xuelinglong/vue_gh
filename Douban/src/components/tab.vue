@@ -17,22 +17,39 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   import Vlistview from './listview/listview.vue';
+  import * as type from './../axios/movies/type';
+
   export default {
-    data () {
+    data() {
       return {
-        cities: ['北京', '上海', '广州', '杭州', '深圳', '香港', '澳门'],
-        open: false,
-        activeTab: 'in_theaters'
+        cities: {
+          '0': '北京',
+          '1': '上海',
+          '2': '广州',
+          '3': '杭州',
+          '4': '深圳',
+          '5': '香港',
+          '6': '澳门'
+        }
+        // open: false
+        // activeTab: 'in_theaters'
       };
     },
     components: {
       'v-listview': Vlistview
     },
+    computed: mapState({
+      activeTab: state => state.movie.tab1
+    }),
     methods: {
-      handleTabChange (val) {
-        this.activeTab = val;
+      handleTabChange(val) {
+        // Action 通过 store.dispatch 方法触发
+        this.$store.dispatch(type.CHANGE_MOVIES_TAB, val);
+        // this.activeTab = val;
         // this.tabvalue = val;
+        // console.log(`tabName: ${this.activeTab}`);
       }
     }
   };</script>

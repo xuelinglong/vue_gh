@@ -12,7 +12,7 @@ export default function(url, params = {}) {
     });
 }
 
-//Promise API
+// Promise API
 // function myAsyncFunction(url) {
 //     return new Promise((resolve, reject) => {
 //         const xhr = new XMLHttpRequest();
