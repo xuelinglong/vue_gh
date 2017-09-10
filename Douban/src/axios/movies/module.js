@@ -43,8 +43,8 @@ export default {
                 subjects: []
             }
         },
-        tab1: 'in_theaters',
-        tab2: '全部'
+        tab: 'in_theaters'
+            // menu: '全部'
     },
     mutations,
     actions

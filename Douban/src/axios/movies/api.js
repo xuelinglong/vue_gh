@@ -5,7 +5,7 @@ export const MOVIESTYPE = {
     comingSoon: 'coming_soon'
 };
 
-export function fetchMovies(type, { city = '广州', start = 0 } = {}) {
+export function fetchMovies(type, { city = '郑州', start = 0 } = {}) {
     return fetch(`movie/${type}`, { city, start });
 }
 export function fetchMoviesQuery({ q, start = 0 }) {

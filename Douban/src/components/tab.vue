@@ -41,7 +41,7 @@
       'v-listview': Vlistview
     },
     computed: mapState({
-      activeTab: state => state.movie.tab1
+      activeTab: state => state.movie.tab
     }),
     methods: {
       handleTabChange(val) {
