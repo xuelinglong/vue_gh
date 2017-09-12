@@ -6,14 +6,18 @@ import subject from './../components/subject/subject';
 Vue.use(Router);
 
 export default new Router({
-    routes: [{
-        path: '/',
-        name: 'tab',
-        component: tab,
-        children: [{
-            path: '/',
-            name: 'subject',
-            component: subject
-        }]
-    }]
+    // routes: [{
+    //     path: '/',
+    //     name: 'tab',
+    //     component: tab,
+    //     children: [{
+    //         path: '/',
+    //         name: 'subject',
+    //         component: subject
+    //     }]
+    // }],
+    routes: [
+        { path: '/', name: 'tab', component: tab },
+        { path: '/subject/:id', name: 'subject', component: subject }
+    ]
 });

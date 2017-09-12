@@ -1,7 +1,7 @@
 <template>
     <div class="list-1" v-if="tabName === `in_theaters`" style="margin-top: 5px">   <!-- 正在热映listview : tab1 -->
         <mu-list v-for="subject in subjects" :key="subject.id">
-            <router-link to="/subject">
+            <router-link :to="{name: 'subject', params:{id: subject.id}}">
             <mu-list-item title="">
                 <!-- <mu-avatar slot="leftAvatar"><img src="../../assets/person.jpg"></mu-avatar> -->
                 <mu-paper slot="left">
@@ -11,10 +11,19 @@
                 </mu-paper>
                 <mu-list style="margin: -20px 0 -15px 0">
                     <span>{{ subject.title }}</span> <br/>
-                    <span>评分：{{ subject.rating.average }}</span> <br/>
-                    <span>导演：{{ subject.directors.name }}</span> <br/>
-                    <span>主演： {{ subject.box }}</span> <br/>
-                    <span>{{ subject.collect_count}}人看过</span>
+                    <span class="smallfont">评分：{{ subject.rating.average }}</span> <br/>
+                    <span class="smallfont">导演：
+                        <span v-for="director in subject.directors">
+                            <span>{{ director.name }}</span>
+                        </span>
+                    </span> <br/>
+                    <span>&nbsp</span> </br>
+                    <!-- <span class="smallfont">主演：
+                        <span v-for="avatar in subject.casts">
+                            <span>{{ avatar.name }} / </span>
+                        </span>
+                    </span> <br/> -->
+                    <span class="smallfont">{{ subject.collect_count}}人看过</span>
                 </mu-list>
                 <mu-badge content="购票" color="#e8ce9b" style="margin-top: 40px" slot="right"/>
             </mu-list-item>
@@ -36,7 +45,7 @@
             <!-- <span>当前子菜单：{{ menu }}</span> -->
             <div class="date">8月25日，星期五</div>
             <mu-list v-for="subject in subjects" style="margin-top: 5px">
-                <router-link to="/subject">
+                <router-link :to="{name: 'subject', params:{id: subject.id}}">
                 <mu-list-item title="">
                     <mu-paper slot="left">
                         <div class='paper-img'>
@@ -45,10 +54,19 @@
                     </mu-paper>
                     <mu-list style="margin: -20px 0 -15px 0">
                         <span>{{ subject.title }}</span> <br/>
-                        <span>导演：{{ subject.directors.name }}</span> <br/>
-                        <span>主演：{{ subject.directors.name }}</span> <br/>
-                        <span>{{ subject.collect_count}}人想看</span> <br/>
-                        <span>&nbsp</span>
+                        <span class="smallfont">导演：
+                            <span v-for="director in subject.directors">
+                                <span>{{ director.name }}</span>
+                            </span>
+                        </span> <br/>
+                        <span>&nbsp</span> </br>
+                        <!-- <span class="smallfont">主演：
+                            <span v-for="avatar in subject.casts">
+                                <span>{{ avatar.name }} / </span>
+                            </span>
+                        </span> <br/> -->
+                        <span class="smallfont">{{ subject.collect_count}}人想看</span> <br/>
+                        <span class="smallfont">&nbsp</span>
                     </mu-list>
                     <mu-badge content="想看" style="margin-top: 40px" color="#e8ce9b" slot="right"/>
                 </mu-list-item>
@@ -111,12 +129,14 @@
     .paper-img{
         width: 100px;
         height: 150px;
-        background: green;
     }
     img{
         width: 100px;
         height: 140px;
         margin-top: 15px;
         overflow: hidden;
+    }
+    .smallfont{
+        font-size: 0.1rem;
     }
 </style>
