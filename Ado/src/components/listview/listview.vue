@@ -23,7 +23,7 @@
 
     <div class="coming_soon" v-else-if="tabName === 'coming_soon'">
         <div class="movie-list">
-            <div class="movie-item" v-for="movie in movies">
+            <div class="movie-item" v-for="subject in subjects">
                 <div class="img">
                     <img src="../../assets/logo.png">
                 </div>
@@ -45,14 +45,20 @@
 </template>
 
 <script>
+    import gainMovies from './../../vuex/axios';
     export default {
         name: 'listview',
-        data () {
+        data() {
             return {
                 movies: ['1', '2', '3', '4', '5']
             };
         },
-        props: ['tabName']
+        props: ['tabName'],
+        mounted() {
+            gainMovies(`movie/in_theaters`);
+        },
+        methods: {
+        }
     };</script>
 
 <style lang="stylus" rel="stylesheet/stylus">

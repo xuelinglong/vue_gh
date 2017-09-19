@@ -13,7 +13,7 @@
     import Listview from '../listview/listview';
     export default {
         name: 'Tab',
-        data () {
+        data() {
             return {
                 selected: 'in_theaters'
             };
