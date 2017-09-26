@@ -1,1 +1,1 @@
-const GAIN_MOVIES = 'GAIN_MOVIES';
+export const FETCH_MOVIES = 'FETCH_MOVIES';

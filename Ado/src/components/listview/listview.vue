@@ -45,19 +45,24 @@
 </template>
 
 <script>
-    import gainMovies from './../../vuex/axios';
+    // import gainMovies from './../../vuex/axios';
     export default {
         name: 'listview',
         data() {
             return {
-                movies: ['1', '2', '3', '4', '5']
+                movies: ['1', '2', '3', '4', '5'],
+                subjects: []
             };
         },
         props: ['tabName'],
         mounted() {
-            gainMovies(`movie/in_theaters`);
+            // gainMovies(`movie/in_theaters`);
+            this.getMovie();
         },
         methods: {
+            getMovie() {
+                //
+            }
         }
     };</script>
 

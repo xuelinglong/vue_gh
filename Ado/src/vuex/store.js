@@ -1,12 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import movie from './movies/module';
 
 Vue.use(Vuex);
 
-const state = {
-    // tab: 'in_theaters'
-};
-
 export default new Vuex.Store({
-    state
+    modules: {
+        movie
+    }
 });
