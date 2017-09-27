@@ -1,23 +1,25 @@
 <template>
     <div class="in_theaters" v-if="tabName === 'in_theaters'">
         <div class="movie-list">
-            <div class="movie-item" v-for="movie in movies">
+            <router-link to="subject">
+            <div class="movie-item" v-for="subject in subjects">
                 <div class="img">
-                    <img src="../../assets/logo.png">
+                    <img :src="subject.images.large">
                 </div>
 
                 <div class="describe">
-                    <span class="title">名称</span>
-                    <span class="rating">评分</span>
-                    <span class="director">导演</span>
-                    <span class="casts">主演</span>
-                    <span class="collect_count">看过人数</span>
+                    <span class="title">{{subject.title}}</span>
+                    <span class="rating">评分：{{ subject.rating.average }}</span>
+                    <span class="director">导演：<span v-for="director in subject.directors"> {{ director.name }} /</span> </span>
+                    <span class="casts">主演：<span v-for="cast in subject.casts"> {{ cast.name }} /</span> </span>
+                    <span class="collect_count">{{ subject.collect_count }}人看过</span>
                 </div>
 
                 <div class="button">
                     <button class="ticket">购票</button>
                 </div>
             </div>
+            </router-link>
         </div>
     </div>
 
@@ -25,14 +27,13 @@
         <div class="movie-list">
             <div class="movie-item" v-for="subject in subjects">
                 <div class="img">
-                    <img src="../../assets/logo.png">
+                    <img :src="subject.images.large">
                 </div>
 
                 <div class="describe">
-                    <span class="title">名称</span>
-                    <span class="director">导演</span>
-                    <span class="casts">主演</span>
-                    <span class="collect_count">看过人数</span>
+                    <span class="title">{{ subject.title }}</span>
+                    <span class="director">导演：<span v-for="director in subject.directors"> {{ director.name }} </span> </span>
+                    <span class="casts">主演：<span v-for="cast in subject.casts"> {{ cast.name }} /</span> </span>
                     <span class="blanks"></span>
                 </div>
 
@@ -45,24 +46,39 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+    import * as type from './../../vuex/movies/type';
     // import gainMovies from './../../vuex/axios';
     export default {
         name: 'listview',
         data() {
             return {
-                movies: ['1', '2', '3', '4', '5'],
-                subjects: []
+                movies: ['1', '2', '3', '4', '5']
             };
         },
         props: ['tabName'],
+        computed: mapState({
+            subjects(state) {
+                return state.movie.movies[this.tabName].subjects;
+            }
+        }),
         mounted() {
-            // gainMovies(`movie/in_theaters`);
+            this.getMovie();
+        },
+        beforeUpdate() {
             this.getMovie();
         },
         methods: {
             getMovie() {
-                //
+                if (
+                    !(this.$store.state.movie.movies[this.tabName].subjects &&
+                        this.$store.state.movie.movies[this.tabName].subjects.length > 0)
+                    ) {
+                        // 以对象方式分发Actions
+                        this.$store.dispatch(type.FETCH_MOVIES, { type: this.tabName });
+                    }
             }
+
         }
     };</script>
 
@@ -71,7 +87,6 @@
         width: 100%
         height: auto
         margin-top: 5px
-        // background: pink
         .movie-list
             width: 100%
             height: auto
@@ -79,64 +94,56 @@
                 width: 100%
                 height: 150px
                 border-bottom: 1px solid #aaaaaa
-                // background: green
                 .img
                     width: 30%;
                     height: 100%
                     float: left
-                    // background: green
                     img
                         width: 90px
                         height: 120px
                         margin-top: 25%
-                        // background: black
                 .describe
                     width: 50%;
                     height: 100%
                     float: left
                     display: flex
                     flex-direction: column
-                    // background: purple
+                    color: #AAAAAA
                     .title
                         flex: 1
-                        height: 20%
+                        height: 23%
                         font-size: 1.2rem
                         text-align: left
                         padding: 5px 1px
-                        // background: black
+                        color: #000000
                     .rating
                         flex: 1
-                        height: 20%
+                        height: 10%
                         font-size: 0.7rem
                         margin: 5px 5px
                         text-align: left
-                        // background: green
                     .director
                         flex: 1
-                        height: 20%
+                        height: auto
                         font-size: 0.7rem
                         margin: 5px 5px
                         text-align: left
-                        // background: black
                     .casts
                         flex: 1
-                        height: 20%
+                        height: auto
                         font-size: 0.7rem
                         margin: 5px 5px
                         text-align: left
-                        // background: green
                     .collect_count
                         flex: 1
-                        height: 20%
+                        height: auto
                         font-size: 0.7rem
                         margin: 5px 5px
                         text-align: left
-                        // background: black
                 .button
                     width: 20%;
                     height: 100%
                     float: left
-                    // background: blue
                     .ticket
                         width: 50px
                         height: 30px
@@ -150,7 +157,6 @@
         width: 100%
         height: auto
         margin-top: 5px
-        // background: pink
         .movie-list
             width: 100%
             height: auto
@@ -158,62 +164,48 @@
                 width: 100%
                 height: 150px
                 border-bottom: 1px solid #aaaaaa
-                // background: green
                 .img
                     width: 30%;
                     height: 100%
                     float: left
-                    // background: green
                     img
                         width: 90px
                         height: 120px
                         margin-top: 25%
-                        // background: black
                 .describe
                     width: 50%;
                     height: 100%
                     float: left
                     display: flex
                     flex-direction: column
-                    // background: purple
+                    color: #AAAAAA
                     .title
                         flex: 1
                         height: 25%
                         font-size: 1.2rem
                         text-align: left
                         padding: 5px 1px
-                        // background: black
+                        color: #000000
                     .director
                         flex: 1
-                        height: 25%
+                        height: auto
                         font-size: 0.7rem
                         margin: 5px 5px
                         text-align: left
-                        // background: black
                     .casts
                         flex: 1
-                        height: 25%
+                        height: auto
                         font-size: 0.7rem
                         margin: 5px 5px
                         text-align: left
-                        // background: green
-                    .collect_count
-                        flex: 1
-                        height: 25%
-                        font-size: 0.7rem
-                        margin: 5px 5px
-                        text-align: left
-                        // background: black
                     .blanks
                         flex: 1
-                        height: 25%
+                        height: auto
                         margin: 5px 5px
-                        // background: black
                 .button
                     width: 20%;
                     height: 100%
                     float: left
-                    // background: blue
                     .ticket
                         width: 50px
                         height: 30px
