@@ -1,6 +1,6 @@
 <template>
     <div class="tab">
-        <mt-navbar v-model="selected" style="margin-top: -30px">
+        <mt-navbar v-model="selected">
             <mt-tab-item id="in_theaters">正在热映</mt-tab-item>
             <mt-tab-item id="coming_soon">即将上映</mt-tab-item>
         </mt-navbar>

@@ -1,6 +1,6 @@
 <template>
-    <div class="header">
-        <mt-header fixed title="">
+    <div class="header" style="margin-top: -70px">
+        <mt-header title="">
             <mt-button icon="more" slot="left">电影</mt-button>
             <mt-button icon="search" slot="right"></mt-button>
         </mt-header>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    
+ 
     export default {
         name: 'header'
     };</script>
