@@ -1,8 +1,8 @@
 <template>
     <div class="in_theaters" v-if="tabName === 'in_theaters'">
         <div class="movie-list">
-            <router-link to="subject">
             <div class="movie-item" v-for="subject in subjects">
+                <router-link :to="{name: `subject`, params:{id: subject.id}}">
                 <div class="img">
                     <img :src="subject.images.large">
                 </div>
@@ -18,14 +18,15 @@
                 <div class="button">
                     <button class="ticket">购票</button>
                 </div>
+                </router-link>
             </div>
-            </router-link>
         </div>
     </div>
 
     <div class="coming_soon" v-else-if="tabName === 'coming_soon'">
         <div class="movie-list">
             <div class="movie-item" v-for="subject in subjects">
+                <router-link :to="{name: `subject`, params:{id: subject.id}}">
                 <div class="img">
                     <img :src="subject.images.large">
                 </div>
@@ -40,6 +41,7 @@
                 <div class="button">
                     <button class="ticket">想看</button>
                 </div>
+                </router-link>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ export default new Router({
             component: Tab
         },
         {
-            path: '/subject',
+            path: '/subject/:id',
             name: 'subject',
             component: Subject
         }

@@ -12,3 +12,7 @@ export const API_TYPE = {
 export function fetchMovies(type, { city = '郑州', start = 0 } = {}) {
     return fetch(`movie/${type}`, { city, start });
 }
+
+export function fetchMovieSubject(id) {
+    return fetch(`movie/subject/${id}`);
+}
