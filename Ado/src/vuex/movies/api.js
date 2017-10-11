@@ -16,3 +16,7 @@ export function fetchMovies(type, { city = '郑州', start = 0 } = {}) {
 export function fetchMovieSubject(id) {
     return fetch(`movie/subject/${id}`);
 }
+
+export function fetchMoviesQuery({ q, start = 0 }) {
+    return fetch('/movie/search', { q, start });
+}

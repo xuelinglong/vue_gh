@@ -5,6 +5,9 @@ const mutations = {
     [type.FETCH_MOVIES](state, payload) {
         // 把获取到的数据的subjects赋到对应tabName的subjects数组中
         state.movies[payload.type].subjects = state.movies[payload.type].subjects.concat(payload.subjects);
+    },
+    [type.FETCH_MOVIES_QUERY](state, payload) {
+        state.movieQuery.subjects = payload.data.subjects;
     }
 };
 
@@ -16,6 +19,10 @@ const actions = {
                 type: payload.type,
                 subjects: data.subjects
             }));
+    },
+    [type.FETCH_MOVIES_QUERY](context, payload) {
+        api.fetchMoviesQuery({ q: payload.q })
+            .then(data => context.commit(type.FETCH_MOVIES_QUERY, { data, q: payload.q }));
     }
 };
 
@@ -28,6 +35,10 @@ export default {
             [api.API_TYPE.comingSoon]: {
                 subjects: []
             }
+        },
+        movieQuery: {
+            subjects: [],
+            q: ''
         }
     },
     mutations,
