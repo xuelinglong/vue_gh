@@ -10,28 +10,56 @@
                 :value="subject.id">
             </mt-cell> -->
 
+            <!-- 此位置的搜索结果是在键盘有输入的时候显示 -->
+            <!-- <div class="mint-search-list">
+                <div class="item" v-for="subject in subjects">
+                    <router-link :to="{name: `subject`, params:{id: subject.id}}">
+                        <div class="image"><img :src="subject.images.large"></div>
+                        <div class="message">
+                            <div class="name">
+                                <span class="title">{{ subject.title }}</span>
+                                <span class="year">{{ subject.year }}</span>
+                            </div>
+                            <div class="genres">
+                                类型：<span v-for="genre in subject.genres">{{ genre.name }}</span>
+                            </div>
+                            <div class="director">
+                                导演：<span v-for="director in subject.directors">{{ director.name }}</span>
+                            </div>
+                            <div class="cast">
+                                主演：<span v-for="cast in subject.casts">{{ cast.name }} / </span>
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+                <div class="black"></div>
+            </div> -->
+        </mt-search>
+
+            <!-- 此位置的搜索结果是在enter之后显示 -->
             <div class="mint-search-list">
                 <div class="item" v-for="subject in subjects">
-                    <div class="image"><img :src="subject.images.large"></div>
-                    <div class="message">
-                        <div class="name">
-                            <span class="title">{{ subject.title }}</span>
-                            <span class="year">{{ subject.year }}</span>
+                    <router-link :to="{name: `subject`, params:{id: subject.id}}">
+                        <div class="image"><img :src="subject.images.large"></div>
+                        <div class="message">
+                            <div class="name">
+                                <span class="title">{{ subject.title }}</span>
+                                <span class="year">{{ subject.year }}</span>
+                            </div>
+                            <div class="genres">
+                                类型：<span v-for="genre in subject.genres">{{ genre.name }}</span>
+                            </div>
+                            <div class="director">
+                                导演：<span v-for="director in subject.directors">{{ director.name }}</span>
+                            </div>
+                            <div class="cast">
+                                主演：<span v-for="cast in subject.casts">{{ cast.name }} / </span>
+                            </div>
                         </div>
-                        <div class="genres">
-                            类型：<span v-for="genre in subject.genres">{{ genre.name }}</span>
-                        </div>
-                        <div class="director">
-                            导演：<span v-for="director in subject.directors">{{ director.name }}</span>
-                        </div>
-                        <div class="cast">
-                            主演：<span v-for="cast in subject.casts">{{ cast.name }} / </span>
-                        </div>
-                    </div>
+                    </router-link>
                 </div>
                 <div class="black"></div>
             </div>
-        </mt-search>
 
         <!-- <div class="result">
                 <div v-for="subject in subjects">{{ subject.title }}</div>
@@ -59,6 +87,7 @@
             '$route': 'fetchQuery'
         },
         mounted() {
+            console.log('mounted.');
             this.fetchQuery();
         },
         methods: {
@@ -81,8 +110,10 @@
 
     <style lang="stylus" rel="stylesheet/stylus">
     .mint-search-list
-        margin-top: 40px
-        padding: 10px
+        width: 91%
+        float: center
+        margin: 90px 0 0 8px
+        padding: 0 10px 5px 10px
         font-size: 15px
         line-height: 20px
         background: #f5f5f5
@@ -92,6 +123,9 @@
             margin-top: 10px
             background: #FFFFFF
             border: 1px solid #FFFFFF
+            & > a
+                color: #000000
+                text-decoration: none
             .image
                 float: left
                 width: 30%
